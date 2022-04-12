@@ -1,0 +1,454 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    ASIGN
+    CADENA
+    CIN
+    COUT
+    DELETE
+    ELSE
+    GET
+    IF
+    INCLUDE
+    LKEY
+    MAIN
+    MAYORQ
+    MENORQ
+    NAMESPACE
+    POST
+    PRINT
+    PT
+    RESERV
+    RKEY
+    STD
+    THEN
+    UPDATE
+    WHILE
+
+Grammar
+
+Rule 0     S' -> instrucciones
+Rule 1     instrucciones -> instruccion instrucciones
+Rule 2     instrucciones -> instruccion
+Rule 3     instruccion -> REVALUAR LCOR expresion RCOR PTCOMA
+Rule 4     expresion -> expresion MAS expresion
+Rule 5     expresion -> expresion MENOS expresion
+Rule 6     expresion -> expresion POR expresion
+Rule 7     expresion -> expresion DIV expresion
+Rule 8     expresion -> MENOS expresion
+Rule 9     expresion -> LPAREN expresion RPAREN
+Rule 10    expresion -> ENTERO
+Rule 11    expresion -> DECIMAL
+
+Terminals, with rules where they appear
+
+ASIGN                : 
+CADENA               : 
+CIN                  : 
+COUT                 : 
+DECIMAL              : 11
+DELETE               : 
+DIV                  : 7
+ELSE                 : 
+ENTERO               : 10
+GET                  : 
+IF                   : 
+INCLUDE              : 
+LCOR                 : 3
+LKEY                 : 
+LPAREN               : 9
+MAIN                 : 
+MAS                  : 4
+MAYORQ               : 
+MENORQ               : 
+MENOS                : 5 8
+NAMESPACE            : 
+POR                  : 6
+POST                 : 
+PRINT                : 
+PT                   : 
+PTCOMA               : 3
+RCOR                 : 3
+RESERV               : 
+REVALUAR             : 3
+RKEY                 : 
+RPAREN               : 9
+STD                  : 
+THEN                 : 
+UPDATE               : 
+WHILE                : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+expresion            : 3 4 4 5 5 6 6 7 7 8 9
+instruccion          : 1 2
+instrucciones        : 1 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . instrucciones
+    (1) instrucciones -> . instruccion instrucciones
+    (2) instrucciones -> . instruccion
+    (3) instruccion -> . REVALUAR LCOR expresion RCOR PTCOMA
+
+    REVALUAR        shift and go to state 3
+
+    instrucciones                  shift and go to state 1
+    instruccion                    shift and go to state 2
+
+state 1
+
+    (0) S' -> instrucciones .
+
+
+
+state 2
+
+    (1) instrucciones -> instruccion . instrucciones
+    (2) instrucciones -> instruccion .
+    (1) instrucciones -> . instruccion instrucciones
+    (2) instrucciones -> . instruccion
+    (3) instruccion -> . REVALUAR LCOR expresion RCOR PTCOMA
+
+    $end            reduce using rule 2 (instrucciones -> instruccion .)
+    REVALUAR        shift and go to state 3
+
+    instruccion                    shift and go to state 2
+    instrucciones                  shift and go to state 4
+
+state 3
+
+    (3) instruccion -> REVALUAR . LCOR expresion RCOR PTCOMA
+
+    LCOR            shift and go to state 5
+
+
+state 4
+
+    (1) instrucciones -> instruccion instrucciones .
+
+    $end            reduce using rule 1 (instrucciones -> instruccion instrucciones .)
+
+
+state 5
+
+    (3) instruccion -> REVALUAR LCOR . expresion RCOR PTCOMA
+    (4) expresion -> . expresion MAS expresion
+    (5) expresion -> . expresion MENOS expresion
+    (6) expresion -> . expresion POR expresion
+    (7) expresion -> . expresion DIV expresion
+    (8) expresion -> . MENOS expresion
+    (9) expresion -> . LPAREN expresion RPAREN
+    (10) expresion -> . ENTERO
+    (11) expresion -> . DECIMAL
+
+    MENOS           shift and go to state 7
+    LPAREN          shift and go to state 8
+    ENTERO          shift and go to state 9
+    DECIMAL         shift and go to state 10
+
+    expresion                      shift and go to state 6
+
+state 6
+
+    (3) instruccion -> REVALUAR LCOR expresion . RCOR PTCOMA
+    (4) expresion -> expresion . MAS expresion
+    (5) expresion -> expresion . MENOS expresion
+    (6) expresion -> expresion . POR expresion
+    (7) expresion -> expresion . DIV expresion
+
+    RCOR            shift and go to state 11
+    MAS             shift and go to state 12
+    MENOS           shift and go to state 13
+    POR             shift and go to state 14
+    DIV             shift and go to state 15
+
+
+state 7
+
+    (8) expresion -> MENOS . expresion
+    (4) expresion -> . expresion MAS expresion
+    (5) expresion -> . expresion MENOS expresion
+    (6) expresion -> . expresion POR expresion
+    (7) expresion -> . expresion DIV expresion
+    (8) expresion -> . MENOS expresion
+    (9) expresion -> . LPAREN expresion RPAREN
+    (10) expresion -> . ENTERO
+    (11) expresion -> . DECIMAL
+
+    MENOS           shift and go to state 7
+    LPAREN          shift and go to state 8
+    ENTERO          shift and go to state 9
+    DECIMAL         shift and go to state 10
+
+    expresion                      shift and go to state 16
+
+state 8
+
+    (9) expresion -> LPAREN . expresion RPAREN
+    (4) expresion -> . expresion MAS expresion
+    (5) expresion -> . expresion MENOS expresion
+    (6) expresion -> . expresion POR expresion
+    (7) expresion -> . expresion DIV expresion
+    (8) expresion -> . MENOS expresion
+    (9) expresion -> . LPAREN expresion RPAREN
+    (10) expresion -> . ENTERO
+    (11) expresion -> . DECIMAL
+
+    MENOS           shift and go to state 7
+    LPAREN          shift and go to state 8
+    ENTERO          shift and go to state 9
+    DECIMAL         shift and go to state 10
+
+    expresion                      shift and go to state 17
+
+state 9
+
+    (10) expresion -> ENTERO .
+
+    RCOR            reduce using rule 10 (expresion -> ENTERO .)
+    MAS             reduce using rule 10 (expresion -> ENTERO .)
+    MENOS           reduce using rule 10 (expresion -> ENTERO .)
+    POR             reduce using rule 10 (expresion -> ENTERO .)
+    DIV             reduce using rule 10 (expresion -> ENTERO .)
+    RPAREN          reduce using rule 10 (expresion -> ENTERO .)
+
+
+state 10
+
+    (11) expresion -> DECIMAL .
+
+    RCOR            reduce using rule 11 (expresion -> DECIMAL .)
+    MAS             reduce using rule 11 (expresion -> DECIMAL .)
+    MENOS           reduce using rule 11 (expresion -> DECIMAL .)
+    POR             reduce using rule 11 (expresion -> DECIMAL .)
+    DIV             reduce using rule 11 (expresion -> DECIMAL .)
+    RPAREN          reduce using rule 11 (expresion -> DECIMAL .)
+
+
+state 11
+
+    (3) instruccion -> REVALUAR LCOR expresion RCOR . PTCOMA
+
+    PTCOMA          shift and go to state 18
+
+
+state 12
+
+    (4) expresion -> expresion MAS . expresion
+    (4) expresion -> . expresion MAS expresion
+    (5) expresion -> . expresion MENOS expresion
+    (6) expresion -> . expresion POR expresion
+    (7) expresion -> . expresion DIV expresion
+    (8) expresion -> . MENOS expresion
+    (9) expresion -> . LPAREN expresion RPAREN
+    (10) expresion -> . ENTERO
+    (11) expresion -> . DECIMAL
+
+    MENOS           shift and go to state 7
+    LPAREN          shift and go to state 8
+    ENTERO          shift and go to state 9
+    DECIMAL         shift and go to state 10
+
+    expresion                      shift and go to state 19
+
+state 13
+
+    (5) expresion -> expresion MENOS . expresion
+    (4) expresion -> . expresion MAS expresion
+    (5) expresion -> . expresion MENOS expresion
+    (6) expresion -> . expresion POR expresion
+    (7) expresion -> . expresion DIV expresion
+    (8) expresion -> . MENOS expresion
+    (9) expresion -> . LPAREN expresion RPAREN
+    (10) expresion -> . ENTERO
+    (11) expresion -> . DECIMAL
+
+    MENOS           shift and go to state 7
+    LPAREN          shift and go to state 8
+    ENTERO          shift and go to state 9
+    DECIMAL         shift and go to state 10
+
+    expresion                      shift and go to state 20
+
+state 14
+
+    (6) expresion -> expresion POR . expresion
+    (4) expresion -> . expresion MAS expresion
+    (5) expresion -> . expresion MENOS expresion
+    (6) expresion -> . expresion POR expresion
+    (7) expresion -> . expresion DIV expresion
+    (8) expresion -> . MENOS expresion
+    (9) expresion -> . LPAREN expresion RPAREN
+    (10) expresion -> . ENTERO
+    (11) expresion -> . DECIMAL
+
+    MENOS           shift and go to state 7
+    LPAREN          shift and go to state 8
+    ENTERO          shift and go to state 9
+    DECIMAL         shift and go to state 10
+
+    expresion                      shift and go to state 21
+
+state 15
+
+    (7) expresion -> expresion DIV . expresion
+    (4) expresion -> . expresion MAS expresion
+    (5) expresion -> . expresion MENOS expresion
+    (6) expresion -> . expresion POR expresion
+    (7) expresion -> . expresion DIV expresion
+    (8) expresion -> . MENOS expresion
+    (9) expresion -> . LPAREN expresion RPAREN
+    (10) expresion -> . ENTERO
+    (11) expresion -> . DECIMAL
+
+    MENOS           shift and go to state 7
+    LPAREN          shift and go to state 8
+    ENTERO          shift and go to state 9
+    DECIMAL         shift and go to state 10
+
+    expresion                      shift and go to state 22
+
+state 16
+
+    (8) expresion -> MENOS expresion .
+    (4) expresion -> expresion . MAS expresion
+    (5) expresion -> expresion . MENOS expresion
+    (6) expresion -> expresion . POR expresion
+    (7) expresion -> expresion . DIV expresion
+
+    RCOR            reduce using rule 8 (expresion -> MENOS expresion .)
+    MAS             reduce using rule 8 (expresion -> MENOS expresion .)
+    MENOS           reduce using rule 8 (expresion -> MENOS expresion .)
+    POR             reduce using rule 8 (expresion -> MENOS expresion .)
+    DIV             reduce using rule 8 (expresion -> MENOS expresion .)
+    RPAREN          reduce using rule 8 (expresion -> MENOS expresion .)
+
+  ! MAS             [ shift and go to state 12 ]
+  ! MENOS           [ shift and go to state 13 ]
+  ! POR             [ shift and go to state 14 ]
+  ! DIV             [ shift and go to state 15 ]
+
+
+state 17
+
+    (9) expresion -> LPAREN expresion . RPAREN
+    (4) expresion -> expresion . MAS expresion
+    (5) expresion -> expresion . MENOS expresion
+    (6) expresion -> expresion . POR expresion
+    (7) expresion -> expresion . DIV expresion
+
+    RPAREN          shift and go to state 23
+    MAS             shift and go to state 12
+    MENOS           shift and go to state 13
+    POR             shift and go to state 14
+    DIV             shift and go to state 15
+
+
+state 18
+
+    (3) instruccion -> REVALUAR LCOR expresion RCOR PTCOMA .
+
+    REVALUAR        reduce using rule 3 (instruccion -> REVALUAR LCOR expresion RCOR PTCOMA .)
+    $end            reduce using rule 3 (instruccion -> REVALUAR LCOR expresion RCOR PTCOMA .)
+
+
+state 19
+
+    (4) expresion -> expresion MAS expresion .
+    (4) expresion -> expresion . MAS expresion
+    (5) expresion -> expresion . MENOS expresion
+    (6) expresion -> expresion . POR expresion
+    (7) expresion -> expresion . DIV expresion
+
+    RCOR            reduce using rule 4 (expresion -> expresion MAS expresion .)
+    MAS             reduce using rule 4 (expresion -> expresion MAS expresion .)
+    MENOS           reduce using rule 4 (expresion -> expresion MAS expresion .)
+    RPAREN          reduce using rule 4 (expresion -> expresion MAS expresion .)
+    POR             shift and go to state 14
+    DIV             shift and go to state 15
+
+  ! POR             [ reduce using rule 4 (expresion -> expresion MAS expresion .) ]
+  ! DIV             [ reduce using rule 4 (expresion -> expresion MAS expresion .) ]
+  ! MAS             [ shift and go to state 12 ]
+  ! MENOS           [ shift and go to state 13 ]
+
+
+state 20
+
+    (5) expresion -> expresion MENOS expresion .
+    (4) expresion -> expresion . MAS expresion
+    (5) expresion -> expresion . MENOS expresion
+    (6) expresion -> expresion . POR expresion
+    (7) expresion -> expresion . DIV expresion
+
+    RCOR            reduce using rule 5 (expresion -> expresion MENOS expresion .)
+    MAS             reduce using rule 5 (expresion -> expresion MENOS expresion .)
+    MENOS           reduce using rule 5 (expresion -> expresion MENOS expresion .)
+    RPAREN          reduce using rule 5 (expresion -> expresion MENOS expresion .)
+    POR             shift and go to state 14
+    DIV             shift and go to state 15
+
+  ! POR             [ reduce using rule 5 (expresion -> expresion MENOS expresion .) ]
+  ! DIV             [ reduce using rule 5 (expresion -> expresion MENOS expresion .) ]
+  ! MAS             [ shift and go to state 12 ]
+  ! MENOS           [ shift and go to state 13 ]
+
+
+state 21
+
+    (6) expresion -> expresion POR expresion .
+    (4) expresion -> expresion . MAS expresion
+    (5) expresion -> expresion . MENOS expresion
+    (6) expresion -> expresion . POR expresion
+    (7) expresion -> expresion . DIV expresion
+
+    RCOR            reduce using rule 6 (expresion -> expresion POR expresion .)
+    MAS             reduce using rule 6 (expresion -> expresion POR expresion .)
+    MENOS           reduce using rule 6 (expresion -> expresion POR expresion .)
+    POR             reduce using rule 6 (expresion -> expresion POR expresion .)
+    DIV             reduce using rule 6 (expresion -> expresion POR expresion .)
+    RPAREN          reduce using rule 6 (expresion -> expresion POR expresion .)
+
+  ! MAS             [ shift and go to state 12 ]
+  ! MENOS           [ shift and go to state 13 ]
+  ! POR             [ shift and go to state 14 ]
+  ! DIV             [ shift and go to state 15 ]
+
+
+state 22
+
+    (7) expresion -> expresion DIV expresion .
+    (4) expresion -> expresion . MAS expresion
+    (5) expresion -> expresion . MENOS expresion
+    (6) expresion -> expresion . POR expresion
+    (7) expresion -> expresion . DIV expresion
+
+    RCOR            reduce using rule 7 (expresion -> expresion DIV expresion .)
+    MAS             reduce using rule 7 (expresion -> expresion DIV expresion .)
+    MENOS           reduce using rule 7 (expresion -> expresion DIV expresion .)
+    POR             reduce using rule 7 (expresion -> expresion DIV expresion .)
+    DIV             reduce using rule 7 (expresion -> expresion DIV expresion .)
+    RPAREN          reduce using rule 7 (expresion -> expresion DIV expresion .)
+
+  ! MAS             [ shift and go to state 12 ]
+  ! MENOS           [ shift and go to state 13 ]
+  ! POR             [ shift and go to state 14 ]
+  ! DIV             [ shift and go to state 15 ]
+
+
+state 23
+
+    (9) expresion -> LPAREN expresion RPAREN .
+
+    RCOR            reduce using rule 9 (expresion -> LPAREN expresion RPAREN .)
+    MAS             reduce using rule 9 (expresion -> LPAREN expresion RPAREN .)
+    MENOS           reduce using rule 9 (expresion -> LPAREN expresion RPAREN .)
+    POR             reduce using rule 9 (expresion -> LPAREN expresion RPAREN .)
+    DIV             reduce using rule 9 (expresion -> LPAREN expresion RPAREN .)
+    RPAREN          reduce using rule 9 (expresion -> LPAREN expresion RPAREN .)
+
